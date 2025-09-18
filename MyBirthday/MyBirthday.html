@@ -1,94 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thư Gửi Xíu 🎉</title>
+    <link href="https://fonts.googleapis.com/css?family=Wendy+One" rel="stylesheet" type="text/css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+            font-family: "Wendy One", cursive;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
 
-<html lang="vi"
-    __fvdsurfcanyoninserted="1"
-    class="
-        clickberry-extension
-        clickberry-extension-standalone
-        clickberry-extension
-        clickberry-extension-standalone
-        clickberry-extension
-        clickberry-extension-standalone
-    "
->
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="shortcut icon" type="image/png" href="./birthdayCake.png"/>
-        <title>Happy Birthday</title>
-        <link rel="stylesheet" href="./style.css">
-        <script>
-            window.open = function () {};
-            window.print = function () {};
-            // Support hover state for mobile.
-            if (false) {
-                window.ontouchstart = function () {};
-            }
-        </script>
-        <script
-            type="text/javascript"
-            src="chrome-extension://bfbmjmiodbnnpllbbbfblcplfjjepjdn/js/injected.js"
-        ></script>
-        <meta content="clickberry-extension-here" />
-    </head>
+        /* Balloons chữ */
+        .balloon {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .balloon div {
+            background: radial-gradient(circle at top left, #ff9a9e, #fad0c4);
+            border-radius: 50% 50% 45% 55%;
+            width: 70px;
+            height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            animation: float 4s ease-in-out infinite;
+        }
+        .balloon span {
+            font-size: 28px;
+            color: white;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+        }
 
-    <body>
-        <link
-            href="https://fonts.googleapis.com/css?family=Wendy+One"
-            rel="stylesheet"
-            type="text/css"
-        />
-        <div class="pyro">
-            <div class="before">
-                
+        /* Avatar */
+        .avatar {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .avatar__img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .avatar__img:hover {
+            transform: scale(1.1);
+        }
+        .avatar__title {
+            margin-top: 20px;
+            font-size: 36px;
+            color: white;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.4);
+            cursor: pointer;
+        }
+
+        /* Hiệu ứng bay */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-30px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Background pháo hoa */
+        .pyro > .before, .pyro > .after {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            background: transparent;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="pyro">
+        <div class="before"></div>
+        <div class="after"></div>
+        <div class="container">
+            <!-- Dòng chữ Thư Gửi Xíu -->
+            <div class="balloon">
+                <div><span>T</span></div>
+                <div><span>H</span></div>
+                <div><span>Ư</span></div>
+                <div><span> </span></div>
+                <div><span>G</span></div>
+                <div><span>Ử</span></div>
+                <div><span>I</span></div>
+                <div><span> </span></div>
+                <div><span>X</span></div>
+                <div><span>Í</span></div>
+                <div><span>U</span></div>
             </div>
-            <div class="after">
 
-            </div>
-            <div class="container">
-                <!-- 2. Dòng chữ Happy Birthday
-                Nếu bạn muốn thêm chữ vào thì phải thay đổi css tương ứng cho nó -->
-                <div class="balloon">
-                    <div><span>H</span></div>
-                    <div><span>A</span></div>
-                    <div><span>P</span></div>
-                    <div><span>P</span></div>
-                    <div><span>Y</span></div>
-                    <div><span>B</span></div>
-                    <div><span>I</span></div>
-                    <div><span>R</span></div>
-                    <div><span>T</span></div>
-                    <div><span>H</span></div>
-                    <div><span>D</span></div>
-                    <div><span>A</span></div>
-                    <div><span>Y</span></div>
-                </div>
-                <div class="avatar">
-                    <!-- 3. Avatar của người bạn muốn gởi lời chúc -->
-                    <img src="./MyAvatar.jpg" alt="" class="avatar__img" onclick="showMessage()" />
-                    <!-- 4. Tên của người đó -->
-                    <h1 onclick="showMessage()" class="avatar__title">Ngọc Tiến</h1>
-                </div>
-                
-                <!-- 5. Phần nhạc -->
-                <!-- <audio id="player" autoplay loop>
-                    <source src="./music.mp3" type="audio/mp3">
-                </audio> -->
+            <!-- Avatar + tên -->
+            <div class="avatar">
+                <img src="./MyAvatar.jpg" alt="" class="avatar__img" onclick="showMessage()" />
+                <h1 onclick="showMessage()" class="avatar__title">Xíu</h1>
             </div>
         </div>
-        <script>
-            if (document.location.search.match(/type=embed/gi)) {
-                window.parent.postMessage("resize", "*");
-            }
-            function showMessage() {
-                // 6. Lời nhắn hiện ra khi bấm vào tên hoặc avatar
-                swal({
-                    title: "Lời nhắn", // Tiêu đề của popup
-                    text: "Gửi đến tôi, chàng trai năm 20 tuổi, hãy biết cố gắng thật nhiều để sau này không hối hận, hãy biết yêu thương bản thân để luôn có sức khỏe khỏe mạnh, hãy biết hiếu thuận gia đình để bố mẹ không bao giờ buồn, và cũng hãy đi tìm nàng công chúa của mình đi nào.", // Nội dung lời nhắn
-                    button: {
-                        text: "❤️️",
-                    },
-                });
-            }
-        </script>
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    </body>
+    </div>
+
+    <script>
+        function showMessage() {
+            swal({
+                title: "Thư gửi Xíu 💌",
+                text: "Gửi đến công chúa của anh, nay là tròn 1 tháng kể từ hai người xa lạ trở thành 1 phần thói quen của nhau. Một chặng đường không quá dài nhưng cũng không ngắn. Một tháng qua anh đã trải qua cảm giác chưa từng có trước đây: được yêu thương, được quan tâm chăm sóc, và được tôn trọng. Đây là lần đầu tiên ngoài gia đình có người đối xử với anh như vậy, anh thật lòng cảm ơn Xíu vì đã mang đến cảm xúc đặc biệt này. \n\nAnh biết 1 tháng vẫn còn sớm, nhưng trái tim anh đã rõ ràng hướng về em. Anh thích tất cả những gì thuộc về em: nụ cười, giọng nói, sự trẻ con khi trêu chọc anh. Mỗi lần ở cạnh em, muộn phiền dường như tan biến. Em là bình yên của anh. 💖 \n\nCảm ơn em vì tất cả. Mong rằng hai đứa mình cứ thế mãi nhé.",
+                button: {
+                    text: "❤️️",
+                },
+            });
+        }
+    </script>
+</body>
 </html>

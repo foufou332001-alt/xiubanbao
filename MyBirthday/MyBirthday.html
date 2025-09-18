@@ -73,45 +73,29 @@
             50% { transform: translateY(-30px); }
             100% { transform: translateY(0px); }
         }
-
-        /* Background pháo hoa */
-        .pyro > .before, .pyro > .after {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            top: 0;
-            left: 0;
-            background: transparent;
-            pointer-events: none;
-        }
     </style>
 </head>
 <body>
-    <div class="pyro">
-        <div class="before"></div>
-        <div class="after"></div>
-        <div class="container">
-            <!-- Dòng chữ Thư Gửi Xíu -->
-            <div class="balloon">
-                <div><span>T</span></div>
-                <div><span>H</span></div>
-                <div><span>Ư</span></div>
-                <div><span> </span></div>
-                <div><span>G</span></div>
-                <div><span>Ử</span></div>
-                <div><span>I</span></div>
-                <div><span> </span></div>
-                <div><span>X</span></div>
-                <div><span>Í</span></div>
-                <div><span>U</span></div>
-            </div>
+    <div class="container">
+        <!-- Dòng chữ Thư Gửi Xíu -->
+        <div class="balloon">
+            <div><span>T</span></div>
+            <div><span>H</span></div>
+            <div><span>Ư</span></div>
+            <div><span> </span></div>
+            <div><span>G</span></div>
+            <div><span>Ử</span></div>
+            <div><span>I</span></div>
+            <div><span> </span></div>
+            <div><span>X</span></div>
+            <div><span>Í</span></div>
+            <div><span>U</span></div>
+        </div>
 
-            <!-- Avatar + tên -->
-            <div class="avatar">
-                <img src="./MyAvatar.jpg" alt="" class="avatar__img" onclick="showMessage()" />
-                <h1 onclick="showMessage()" class="avatar__title">Xíu</h1>
-            </div>
+        <!-- Avatar + tên -->
+        <div class="avatar">
+            <img src="./MyAvatar.jpg" alt="Avatar" class="avatar__img" onclick="showMessage()" />
+            <h1 onclick="showMessage()" class="avatar__title">Ngọc Tiến</h1>
         </div>
     </div>
 
@@ -121,9 +105,31 @@
                 title: "Thư gửi Xíu 💌",
                 text: "Gửi đến công chúa của anh, nay là tròn 1 tháng kể từ hai người xa lạ trở thành 1 phần thói quen của nhau. Một chặng đường không quá dài nhưng cũng không ngắn. Một tháng qua anh đã trải qua cảm giác chưa từng có trước đây: được yêu thương, được quan tâm chăm sóc, và được tôn trọng. Đây là lần đầu tiên ngoài gia đình có người đối xử với anh như vậy, anh thật lòng cảm ơn Xíu vì đã mang đến cảm xúc đặc biệt này. \n\nAnh biết 1 tháng vẫn còn sớm, nhưng trái tim anh đã rõ ràng hướng về em. Anh thích tất cả những gì thuộc về em: nụ cười, giọng nói, sự trẻ con khi trêu chọc anh. Mỗi lần ở cạnh em, muộn phiền dường như tan biến. Em là bình yên của anh. 💖 \n\nCảm ơn em vì tất cả. Mong rằng hai đứa mình cứ thế mãi nhé.",
                 button: {
-                    text: "❤️️",
+                    text: "❤️ (30s)",
+                    closeModal: false, 
                 },
+            }).then(() => {
+                // Khi hết 30s, click sẽ redirect
+                if (!document.querySelector(".swal-button").disabled) {
+                    window.location.href = "https://www.youtube.com/watch?v=Ip6cw8gfHHI&list=RDIp6cw8gfHHI&start_radio=1";
+                }
             });
+
+            let btn = document.querySelector(".swal-button");
+            btn.disabled = true;
+            btn.style.opacity = "0.5";
+            let timeLeft = 30;
+
+            let timer = setInterval(() => {
+                timeLeft--;
+                btn.textContent = `❤️ (${timeLeft}s)`;
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    btn.disabled = false;
+                    btn.style.opacity = "1";
+                    btn.textContent = "❤️ Mở quà";
+                }
+            }, 1000);
         }
     </script>
 </body>
